@@ -1,0 +1,15 @@
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\bin\Debug\net7.0\LeetCode.Problems.exe
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\bin\Debug\net7.0\LeetCode.Problems.deps.json
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\bin\Debug\net7.0\LeetCode.Problems.runtimeconfig.json
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\bin\Debug\net7.0\LeetCode.Problems.dll
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\bin\Debug\net7.0\LeetCode.Problems.pdb
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.AssemblyInfoInputs.cache
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.AssemblyInfo.cs
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.csproj.CoreCompileInputs.cache
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.sourcelink.json
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.dll
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\refint\LeetCode.Problems.dll
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.pdb
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\LeetCode.Problems.genruntimeconfig.cache
+C:\Users\parviz.a\Documents\Github\leetcode_problems\LeetCode.Problems\obj\Debug\net7.0\ref\LeetCode.Problems.dll

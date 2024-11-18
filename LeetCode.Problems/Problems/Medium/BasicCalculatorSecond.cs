@@ -85,130 +85,115 @@ public class BasicCalculatorSecond
      *   Explanation: Parentheses are evaluated first.
      */
 
-    public int Calculate(string s)
+    public int CalculateWithStack(string s)
     {
-        s = RemoveSpaces(s); // Step 1: Remove spaces
-        return Evaluate(s); // Step 2: Evaluate the expression
-    }
+        if (string.IsNullOrEmpty(s))
+            return 0;
 
-    /*
-     * Helper Function: RemoveSpaces
-     * Removes all spaces from the input string.
-     */
-    private string RemoveSpaces(string s)
-    {
-        string result = "";
-        foreach (char c in s)
+        Stack<int> stack = new Stack<int>();
+        int num = 0;
+        char sign = '+';
+        int n = s.Length;
+
+        for (int i = 0; i < n; i++)
         {
-            if (c != ' ')
+            char ch = s[i];
+
+            if (char.IsDigit(ch))
             {
-                result += c;
+                num = num * 10 + (ch - '0');
             }
+
+            if ((!char.IsDigit(ch) && ch != ' ') || i == n - 1)
+            {
+                switch (sign)
+                {
+                    case '+':
+                        stack.Push(num);
+                        break;
+                    case '-':
+                        stack.Push(-num);
+                        break;
+                    case '*':
+                        stack.Push(stack.Pop() * num);
+                        break;
+                    case '/':
+                        stack.Push(stack.Pop() / num);
+                        break;
+                }
+
+                sign = ch;
+                num = 0;
+            }
+        }
+
+        int result = 0;
+        while (stack.Count > 0)
+        {
+            result += stack.Pop();
         }
 
         return result;
     }
+    
+    public int CalculateWithoutStack(string s)
+    {
+        int index = 0; // Declare index as a local variable
+        return Evaluate(s.Replace(" ", ""), ref index);
+    }
 
-    /*
-     * Helper Function: Evaluate
-     * Recursively evaluates a mathematical expression with parentheses, addition, subtraction,
-     * multiplication, and division.
-     */
-    private int Evaluate(string s)
+    private int Evaluate(string s, ref int index)
     {
         int result = 0;
-        int currentNumber = 0;
-        int sign = 1; // 1 for positive, -1 for negative
-        int i = 0;
-        char lastOperator = '+'; // Tracks the last operator for precedence
-        int lastResult = 0; // Stores the intermediate result for multiplication/division
+        int lastNumber = 0;
+        int num = 0;
+        char sign = '+';
 
-        while (i < s.Length)
+        while (index < s.Length)
         {
-            char c = s[i];
+            char ch = s[index++];
 
-            if (char.IsDigit(c))
+            if (char.IsDigit(ch))
             {
-                // Build the current number
-                currentNumber = 0;
-                while (i < s.Length && char.IsDigit(s[i]))
-                {
-                    currentNumber = currentNumber * 10 + (s[i] - '0');
-                    i++;
-                }
-
-                // Apply the last operator
-                if (lastOperator == '*')
-                {
-                    lastResult *= currentNumber;
-                }
-                else if (lastOperator == '/')
-                {
-                    lastResult /= currentNumber;
-                }
-                else
-                {
-                    lastResult = sign * currentNumber;
-                }
-
-                continue; // Skip incrementing i as the loop already moved
-            }
-            else if (c == '+')
-            {
-                result += lastResult; // Add the last result to the total
-                sign = 1;
-                lastOperator = '+';
-            }
-            else if (c == '-')
-            {
-                result += lastResult; // Add the last result to the total
-                sign = -1;
-                lastOperator = '-';
-            }
-            else if (c == '*')
-            {
-                lastOperator = '*';
-            }
-            else if (c == '/')
-            {
-                lastOperator = '/';
-            }
-            else if (c == '(')
-            {
-                // Solve the sub-expression inside parentheses
-                int start = i + 1; // Move to the character after '('
-                int openBrackets = 1;
-
-                // Find the matching closing parenthesis
-                while (i + 1 < s.Length && openBrackets > 0)
-                {
-                    i++;
-                    if (s[i] == '(') openBrackets++;
-                    if (s[i] == ')') openBrackets--;
-                }
-
-                // Recursively evaluate the expression inside parentheses
-                int subResult = Evaluate(s.Substring(start, i - start));
-                if (lastOperator == '*')
-                {
-                    lastResult *= subResult;
-                }
-                else if (lastOperator == '/')
-                {
-                    lastResult /= subResult;
-                }
-                else
-                {
-                    lastResult = sign * subResult;
-                }
+                num = num * 10 + (ch - '0');
             }
 
-            // Move to the next character
-            i++;
+            if (ch == '(')
+            {
+                // Recursively evaluate the expression within parentheses
+                num = Evaluate(s, ref index);
+            }
+
+            if (!char.IsDigit(ch) || index == s.Length || ch == ')')
+            {
+                if (sign == '+')
+                {
+                    result += lastNumber;
+                    lastNumber = num;
+                }
+                else if (sign == '-')
+                {
+                    result += lastNumber;
+                    lastNumber = -num;
+                }
+                else if (sign == '*')
+                {
+                    lastNumber *= num;
+                }
+                else if (sign == '/')
+                {
+                    lastNumber /= num; // Use integer division
+                }
+
+                if (ch == ')')
+                    break;
+
+                sign = ch;
+                num = 0;
+            }
         }
 
-        // Add the last processed result
-        result += lastResult;
-        return result;
+        return result + lastNumber;
     }
+
 }
